@@ -4,13 +4,17 @@ namespace App\Repositories\Movies;
 
 use App\Models\Movie;
 use Illuminate\Pagination\LengthAwarePaginator;
+use Illuminate\Support\Collection;
 
 
 interface MovieRepositoryInterface
 {
-    public function getMoviesByUserId(int $id, int $pagination = 10): LengthAwarePaginator;
+
+    public function getMoviesByCriteria(Collection $criteriaCollection, int $pagination = 10): LengthAwarePaginator;
 
     public function getMovieById(int $id): Movie;
+
+    public function getCategories(): Collection;
 
     public function createMovie(array $data): ?Movie;
 

@@ -1,4 +1,19 @@
 <div>
+    <div>
+        <label for="name">Nombre:</label>
+        <input type="text" wire:model.live="name">
+    </div>
+
+    <div>
+        <label for="categoryId">Categoria:</label>
+        <select wire:model.live="categoryId">
+            <option value="">Elige una opción</option>
+            @foreach ($categories as $category)
+                    <option value="{{$category->id}}">{{$category->name}}</option>
+            @endforeach
+        </select>
+    </div>
+
     <table class="table-auto w-full">
         <thead>
             <tr>

@@ -2,23 +2,37 @@
 
 namespace App\Repositories\Movies\Eloquent;
 
+use App\Models\Category;
 use App\Models\Movie;
 use App\Repositories\Movies\MovieRepositoryInterface;
 use Exception;
 use Illuminate\Pagination\LengthAwarePaginator;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
 
 class MovieEloquentRepository implements MovieRepositoryInterface
 {
+
+    protected function query()
+    {
+        return Movie::query();
+    }
+
     /**
      * Retrieve al movies from database related to a user
      * 
      * @param \App\Models\User $user
      * @return \Illuminate\Database\Eloquent\Collection
      */
-    public function getMoviesByUserId(int $id, int $pagination = 10): LengthAwarePaginator
+    public function getMoviesByCriteria(Collection $criteriaCollection, int $pagination = 10): LengthAwarePaginator
     {
-        return Movie::where('user_id', $id)->paginate($pagination);
+        $query = $this->query();
+
+        $criteriaCollection->each(function ($criterion) use ($query) {
+            $criterion->filter($query);
+        });
+
+        return $query->paginate($pagination);
     }
 
     /**
@@ -30,6 +44,16 @@ class MovieEloquentRepository implements MovieRepositoryInterface
     {
         return Movie::find($id);
     }
+
+    /**
+     * Get all movies categories
+     * @return \Illuminate\Support\Collection
+     */
+    public function getCategories(): Collection
+    {
+        return Category::all();
+    }
+
 
     /**
      * Creates a movie. If categories are specified they are synched

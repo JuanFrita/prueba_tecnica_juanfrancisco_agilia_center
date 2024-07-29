@@ -5,7 +5,7 @@
             <input type="text" id="name" wire:model.live="name" class="border rounded p-2">
         </div>
     
-        <div class="px-2">
+        <div class="p-1 px-2">
             <label for="categoryId" class="block">Categoria:</label>
             <select id="categoryId" wire:model.live="categoryId" class="border rounded p-2">
                 <option value="">Elige una opción &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</option>

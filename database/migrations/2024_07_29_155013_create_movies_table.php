@@ -11,11 +11,12 @@ return new class extends Migration {
     public function up(): void
     {
         Schema::create('movies', function (Blueprint $table) {
+            $table->softDeletes();
             $table->id();
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->string('name', 255)->comment("Movie's title");
-            $table->date('release_year')->comment("Release Year of the movie");
-            $table->text('cover')->comment("File that represents the movie's cover");
+            $table->year('release_year')->comment("Release Year of the movie");
+            $table->text('cover')->default(config('app.url') . "/assets/images/no_image_available.png")->comment("File that represents the movie's cover");
             $table->timestamps();
         });
     }
@@ -25,6 +26,9 @@ return new class extends Migration {
      */
     public function down(): void
     {
+        Schema::table('movies', function (Blueprint $table) {
+            $table->dropSoftDeletes();
+        });
         Schema::dropIfExists('movies');
     }
 };

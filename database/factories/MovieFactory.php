@@ -18,8 +18,8 @@ class MovieFactory extends Factory
     {
         return [
             'name' => $this->faker->sentence(),
-            'release_year' => $this->faker->dateTimeThisCentury(),
-            'cover' => config('app.url') . "/images/no_image_available.png"
+            'release_year' => $this->faker->year(),
+            'cover' => config('app.url') . "/assets/images/no_image_available.png"
         ];
     }
 }

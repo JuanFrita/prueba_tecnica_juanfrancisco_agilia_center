@@ -21,8 +21,8 @@
             <tr>
                 <th class="px-4 py-2">ID</th>
                 <th class="px-4 py-2">Nombre</th>
-                <th class="px-4 py-2">Portada</th>
                 <th class="px-4 py-2">Categorías</th>
+                <th class="px-4 py-2">Portada</th>
             </tr>
         </thead>
         <tbody>

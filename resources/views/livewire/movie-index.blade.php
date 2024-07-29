@@ -21,6 +21,7 @@
             <tr>
                 <th class="px-4 py-2">ID</th>
                 <th class="px-4 py-2">Nombre</th>
+                <th class="px-4 py-2">Año estreno</th>
                 <th class="px-4 py-2">Categorías</th>
                 <th class="px-4 py-2">Portada</th>
             </tr>
@@ -30,6 +31,7 @@
             <tr>
                 <td class="border px-4 py-2">{{ $movie->id }}</td>
                 <td class="border px-4 py-2">{{ $movie->name }}</td>
+                <td class="border px-4 py-2">{{ $movie->release_year }}</td>
                 <td class="border px-4 py-2">{{$movie->getCategoriesText()}}</td>
                 <td class="border px-4 py-2"><img src="{{ $movie->cover }}" height="100px" width="100px"></td>
             </tr>

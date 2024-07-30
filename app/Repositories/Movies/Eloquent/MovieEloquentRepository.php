@@ -5,7 +5,6 @@ namespace App\Repositories\Movies\Eloquent;
 use App\Models\Category;
 use App\Models\Movie;
 use App\Repositories\Movies\MovieRepositoryInterface;
-use Exception;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
@@ -68,7 +67,8 @@ class MovieEloquentRepository implements MovieRepositoryInterface
             $movie->categories()->sync($data['categories']);
             DB::commit();
             return $movie;
-        } catch (Exception $e) {
+        } catch (\Exception $e) {
+            DB::rollBack();
             \Log::error(__CLASS__ . " ::createMovie: " . $e->getMessage());
             return null;
         }
@@ -88,7 +88,8 @@ class MovieEloquentRepository implements MovieRepositoryInterface
             $movie->categories()->sync($data['categories']);
             DB::commit();
             return $movie;
-        } catch (Exception $e) {
+        } catch (\Exception $e) {
+            DB::rollBack();
             \Log::error(__CLASS__ . " ::updateMovie: " . $e->getMessage());
             return null;
         }

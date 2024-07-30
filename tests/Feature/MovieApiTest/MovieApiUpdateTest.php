@@ -39,7 +39,7 @@ class MovieApiUpdateTest extends TestCase
 
         // Assert the response
         Log::info("POST UPDATE: " . json_encode($response));
-        $response->assertStatus(201);
+        $response->assertStatus(200);
     }
 
     public function test_update_failed_other_user(): void

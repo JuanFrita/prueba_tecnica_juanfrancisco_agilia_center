@@ -84,7 +84,7 @@ class MovieEloquentRepository implements MovieRepositoryInterface
     {
         DB::beginTransaction();
         try {
-            $movie = Movie::create($data);
+            $movie->update($data);
             $movie->categories()->sync($data['categories']);
             DB::commit();
             return $movie;

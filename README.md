@@ -38,6 +38,8 @@ Las respuestas a las preguntas de teoría se encuentran en RespuestasTeoría.md
 # Instalación (Terminal)
 - composer install
 - npm install
+- cp .env.example .env
+- php artisan key:generate
 - php artisan migrate:fresh --seed
 - (Opcional) php artisan db:seed --class=DatabaseFakeSeeder
 
